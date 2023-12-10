@@ -1,0 +1,37 @@
+<%- include('./includes/header.ejs') %>
+
+<h3>Recapitulatif du panier</h3>
+<section class="section-cart" >
+    <div id="item-list" class="cart">
+    </div>
+    <aside id="side-total" >
+        
+        <script src="/script/cart.js"> </script>
+        <div  class="bottom-button">
+            <% if (!locals.session.connected && !locals.session.user) { %>
+            <button  class="btn" id="btn-modal"> commander</button>
+            <%}%>
+            <%if (locals.session.connected && locals.session.user) { %>
+                <form action="/order">
+                <button  class="btn"> commander</button>
+                </form>
+                <%}%>
+        </div>
+    </aside>
+    
+    <div class="modal" id="modal">
+        <p id="close-modal" class="close-modal">x</p>
+        <h1>Avez vous un compte ? </h1>
+        <a href="/inscription" class="modal-btn">Crée un compte </a>
+        <a href="/login" class="modal-btn">Se Connecter</a>
+        <a href="/order-guest" class="modal-btn">Compte Inviter</a>
+    </div>
+
+</section>
+
+
+
+
+
+
+<%- include('./includes/footer.ejs') %>

@@ -1,0 +1,25 @@
+<%- include('./includes/header.ejs') %>
+<span class="fil-ariane">
+    <a href="/admin">Commande /</a> 
+    <a href="/admin-product">Produit /</a>
+    <a href="/admin-slider">slider/</a>
+ 
+</span>
+<section class="crud-update-add">
+    <h2>Edit Product</h2>
+    <form action="/admin/slider/<%= updateData.id %>" method="POST"  >
+       
+       
+       
+        <label for="url">Image</label>
+        <input type="text" name="url" value="<%=updateData.image_url %>">
+     
+        <label for="caption">Description</label>
+        <input type="text" class="form-control" id="caption" name="caption" value="<%= updateData.caption %>" >
+    
+    
+    <button type="submit" class="btn">Update</button>
+    </form>
+    
+  </section>
+

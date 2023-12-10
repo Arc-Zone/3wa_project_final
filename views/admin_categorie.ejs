@@ -1,0 +1,67 @@
+<%- include('./includes/header.ejs') %>
+
+<section  class="crud-section search-article">
+    <h2 id="update">Gestion des Categorie</h2>
+    <span class="fil-ariane">
+        <a href="/admin">Commande /</a> 
+        <a href="/admin-product">Produit /</a>
+        <a href="/admin-slider">slider/</a>
+        <a href="#edit">Modifier une catégorie</a>
+    </span>
+        <% for (categorie of categories) {%>
+            <article class="search-article crud order" id="edit">
+                <h3><%=categorie.name_categorie%></h3>
+                <img src="<%=categorie.image_categorie%>" alt="<%=categorie.caption_categorie_img%>" >
+                <p><%=categorie.caption_categorie_img%></p>
+
+                <form action="/admin-categorie-display"  method="post" class="categorie-status" >
+
+                    <input type="hidden" value="<%= categorie.id %>" name="categorieId">
+                    
+                        <select name="statusCategorie">
+                            <option value="<%=categorie.display_categorie%>" data-index="<%=categorie.display_categorie%>" class="option-value">
+                                <%= categorie.display_categorie === 'block' ? 'visible' : 'non visible' %>
+                            </option>                              
+                            <option value="block">Visible</option>
+                            <option value="none">Non visible</option>
+                        </select>
+                        <input type="submit" value="Mettre a jour">
+                       
+                </form>
+                <p><a href="/admin/edit-categorie/<%=categorie.id%>">Modifier</a></p>  
+                <form action="/admin/delete-categorie/<%= categorie.id %>" method="post">
+                    <input type="hidden" name="id" value="<%= categorie.id %>">
+                    <input type="submit" value="x">
+                  </form>
+                  
+                
+                
+         
+
+            </article>
+            <%}%>
+</section>
+<section class="crud-update-add">
+    <h2 id="add">Crée une categorie </h2>
+    <form method="POST"  action="/admin/create-categorie" >
+
+            <label for="categorieName">Nom de la categorie :</label>
+                <input type="text" name="categorieName" required>
+
+                <label for="imgCategorie"> Lien de l'image :</label>
+                <input type="text" name="imgCategorie" required>
+
+            <label for="caption">Description de l'image :</label>
+                <textarea name="caption" required></textarea>
+
+            <label for="status">Status de la categorie a sa creation</label>
+        <select name="status" id="">
+            <option value="block">Visible</option>
+            <option value="none">Non visible</option>
+        </select>
+                <input  type="submit" value="Ajouter" class="btn">
+        </div>
+    </form>
+        
+    </section>
+<%- include('./includes/footer.ejs') %>

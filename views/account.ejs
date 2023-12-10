@@ -1,0 +1,40 @@
+<%- include('./includes/header.ejs') %>
+<section class="account-page">
+    <h1>Mon Compte</h1>
+    <div class="user-info">
+        <%- include('./includes/nav_account.ejs') %>
+        <form action="/update-user" method="post">
+            <div>
+                <label for="prenom">Prénom : </label>
+                <input type="text" value=" <%=userAccount.first_name%>" name="prenom" required>
+            </div>
+            <div>
+                <label for="nom">Nom : </label>
+                <input type="text" value="<%=userAccount.last_name%>" name="nom" required>
+            </div>
+            <div>
+                <label for="email">Email : </label>
+                <span><%=userAccount.email %> </span>
+            </div>
+        <div>
+                <label for="phone">Telephone : </label>
+                <input type="text" value="0<%=userAccount.phone %>"  name="phone" required>
+        </div>
+        <div>
+            <label for="adresse">Adresse:</label>
+            <input type="text" value="<%=userAccount.adresse%>" name="adresse" required>
+        </div>
+        <div>
+                <label for="codePostale">Code postale : </label>
+                <input type="text" value="<%=userAccount.code_postale%>"  name="codePostale" required>
+        </div>
+            <div>
+                <label for="city">Ville : </label>
+                <input type="text" name="city" value="<%=userAccount.city%>"   name="city"  required>
+            </div>
+            <button class="btn">Edit Profile</button>
+        </form>
+    </div>
+
+</section>
+<%- include('./includes/footer.ejs') %>

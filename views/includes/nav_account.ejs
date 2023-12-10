@@ -1,0 +1,20 @@
+<nav class="nav_bar">
+
+    <div class="nav_account">
+
+        <li><a href="/account">Mon Profil</a></li>
+        <li><a href="/order-page">Mes Commandes</a></li>
+        <% if (locals.session.connected && locals.session?.user?.admin) { %>
+            <li class="open-menu-deroulant"><a href="/admin">administration</a>
+            <ol class="menu-deroulant">
+                <li> <a href="/admin">Commande </a></li>
+                <li><a href="/admin-product">Produit</a></li>
+                <li><a href="/admin-categorie">Categorie</a></li>
+                <li><a href="/admin-slider">Slider</a></li>
+             
+            </ol>
+        </li>
+            <% } %>
+
+    </div>
+</nav>

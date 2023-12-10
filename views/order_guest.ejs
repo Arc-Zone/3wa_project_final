@@ -1,0 +1,56 @@
+<%- include('./includes/header.ejs') %>
+<section>
+  <h1>Recapitulatif des informations</h1>
+  <div class="user-info">
+    <form action="/order-guest" method="post" id="post-form-order">
+      <div>
+        <label for="firstName">Prénom : </label>
+        <input type="text" placeholder="Prénom" name="firstName" required />
+      </div>
+      <div>
+        <label for="lastName">Nom : </label>
+        <input type="text" name="lastName" placeholder="Nom" required />
+      </div>
+      <div>
+        <label for="email">Email : </label>
+        <input type="email" name="email" placeholder="Email" required />
+      </div>
+      <div>
+        <label for="phone">Téléphone : </label>
+        <input type="text" name="phone" placeholder="Téléphone" required />
+      </div>
+      <div>
+        <label for="adresse">Adresse:</label>
+        <input type="text" name="adresse" placeholder="Adresse" required />
+      </div>
+      <div>
+        <label for="codePostale">Code postale : </label>
+        <input
+          type="text"
+          name="codePostale"
+          placeholder="Code postale"
+          required
+        />
+      </div>
+      <div>
+        <label for="city">Ville : </label>
+        <input type="text" name="city" placeholder="Ville" required />
+      </div>
+      <a class="btn" id="check-data-modal">Valider</a>
+    </form>
+  </div>
+  <div class="modal-order-data" id="modal-order-data">
+    <h2>Les informations sont-elles correctes ?</h2>
+    <div>
+      <input
+        type="submit"
+        class="modal-btn"
+        value="oui"
+        onclick="submitPostFormOrder ()"
+      />
+      <input class="modal-btn" id="close-modal" value="non" type="button" />
+    </div>
+  </div>
+</section>
+<script src="script/order_guest.js"></script>
+<%- include('./includes/footer.ejs') %>

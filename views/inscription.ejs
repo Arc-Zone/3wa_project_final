@@ -1,0 +1,46 @@
+<%- include('./includes/header.ejs') %>
+<section class="sing-in-page">
+<h1>Inscription</h1>
+    <form action="/inscription" method="POST" >
+            <div>
+                <label for="nom">Nom </label>
+                <input type="text" id="nom" name="nom"         placeholder="nom"     required>
+            </div>
+            <div>
+                <label for="prenom">Prénom </label>
+                <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+            </div> 
+        
+            <div>
+                <label for="email">Email </label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>    
+            <div>                
+                <label for="motdepasse">Mot de passe </label>
+                <input type="password" id="motdepasse" name="motdepasse" placeholder="Mot de passe" required>
+            </div>
+            <div>
+                <label for="adresse">Adresse Postale</label>
+                <input type="text" name="adresse"     placeholder="Adresse"  required>
+            </div>
+            <div>
+                <label for="city">Ville</label>
+                <input type="text" name="city"    placeholder="Ville"  required>
+            </div>
+            <div>
+                <label for="postale">Code Postale</label>
+                <input type="text" name="postale"  placeholder="code Postale" required>
+            </div>
+            <div>
+                <label for="phone">Téléphone</label>
+                <input type="tel" name="phone" placeholder="Téléphone" required>
+            </div>
+            <div>
+                <button type="submit" class="btn">S'inscrire</button>
+            </div>    
+            <div>
+                <a href="/login">Déja Client ?</a>
+            </div>
+    </form>
+</section>
+    <%- include('./includes/footer.ejs') %>

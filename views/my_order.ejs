@@ -1,0 +1,56 @@
+<%- include('./includes/header.ejs') %>
+<section class="account-page">
+    <h1>Mon Compte</h1>
+    <div class="user-info">
+        <%- include('./includes/nav_account.ejs') %>
+      
+            <% for (order of myOrder) { %>
+                <article class="order">
+                    <div class="top-my-order">
+                        <h4>Commande numéro : #<%=order.id_commande%></h4>
+                        <p>Date de la commande: <%=order.order_date.toLocaleDateString('fr-FR')%></p>
+                    </div>
+                    <div>
+                            <% const productNames = order.product_names.split(','); %>
+                            <% for (let i = 0; i < productNames.length; i++) { %>
+                            <p><%= productNames[i] %></p>
+                            <% } %>
+                    </div>
+                    <div>
+                        <% const productQuantities = order.quantities.split(','); %>
+                        <% for (let i = 0; i < productQuantities.length; i++) { %>
+                            <p>Qté x <%= order.quantities[i] %></p>
+                        <% } %>
+                    </div>
+                    <div>
+                        <% const productPrice = order.prices.split(','); %>
+                        <% for (let i = 0; i < productPrice.length; i++) { %>
+                        <p><%= productPrice[i] %> unt/€</p>
+                        <% } %>
+                    </div>
+                    <div class="bottom-my-order">
+                        <div>
+                            <p>Total : <%= order.total_amount %>€</p>
+                    </div>
+                        <div>
+                            <p>Status de la commande :<span class="status-order"><%= order.status.toUpperCase() %> </span> </p>
+                    </div>
+                    <% for (infoUser of  userInfo ) { %>
+                    <div>
+                        <p> Adresse de livraison: <%=infoUser.adresse%></p>
+                    </div>
+                    <div>
+                        <p> Code postale : <%=infoUser.code_postale%></p>
+                    </div>
+                    <div>
+                        <p>Ville : <%=infoUser.city%></p>
+                    </div>
+                    <%}%>
+                        
+                    </div>
+            </article>                       
+                <%}%>
+    </div>
+</section>
+<script src="script/order_status.js"></script>
+<%- include('./includes/footer.ejs') %>

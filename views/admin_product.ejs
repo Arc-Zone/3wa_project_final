@@ -1,0 +1,104 @@
+<%- include('./includes/header.ejs') %>
+
+<section class="crud-section search-article">
+  <h2 id="update">Modifier un Produit</h2>
+  <span class="fil-ariane">
+    <a href="/admin">Commande /</a> 
+    <a href="#add"> Ajouter un Produit /</a>
+     <a href="#update">Modifier un produit /</a>
+      <a href="/admin-slider">slider /</a> 
+      <a href="/admin-categorie">Categorie</a>
+    </span>
+
+  <% for ( product of products) { %>
+  <article class="crud search-article order">
+    <h3><%= product.name%></h3>
+    <p><%= product.price%>€</p>
+    <p><%= product.count%></p>
+
+    <form
+      action="/admin-product-display"
+      method="post"
+      class="categorie-status"
+    >
+      <input type="hidden" value="<%= product.id %>" name="productId" />
+
+      <select name="statusProduct">
+        <option
+          value="<%=product.display_product%>"
+          data-index="<%=product.product%>"
+          class="option-value"
+        >
+          <%=product.display_product%>
+        </option>
+        <option value="block">Visible</option>
+        <option value="none">Non visible</option>
+      </select>
+      <input type="submit" value="Mettre a jour" />
+    </form>
+
+    <p><a href="/admin/update/<%= product.id %>">Mettre à Jour</a></p>
+    <form action="/admin-product/remove/<%= product.id %>" method="post">
+      <input type="hidden" name="id" value="<%= product.id %>">
+      <input type="submit" value="x">
+    </form>
+  </article>
+  <%}%>
+</section>
+
+<section class="crud-update-add">
+  <h2 id="add">AJouter un produit</h2>
+
+  <span class="fil-ariane">
+    <a href="/admin">Commande /</a> 
+     <a href="#update">Modifier un produit /</a>
+      <a href="/admin-slider">slider /</a> 
+      <a href="/admin-categorie">Categorie</a>
+    </span>
+
+  <form method="POST" action="/admin-product">
+    <label for="name">Nom:</label>
+    <input type="text" name="name" required />
+
+    <label for="description">Description:</label>
+    <textarea name="description" required></textarea>
+
+    <label for="price">Prix : </label>
+    <input type="text" name="price" required />
+
+    <label for="img_url_0">URL de l'image :</label>
+    <input type="text" name="images[0][img_url]" required />
+
+    <label for="caption_0">Légende de l'image :</label>
+    <input type="text" name="images[0][caption]" required />
+
+    <label for="img_url_0">URL de l'image :</label>
+    <input type="text" name="images[1][img_url]" required />
+
+    <label for="caption_0">Légende de l'image :</label>
+    <input type="text" name="images[1][caption]" required />
+
+    <label for="img_url_0">URL de l'image :</label>
+    <input type="text" name="images[2][img_url]" required />
+
+    <label for="caption_0">Légende de l'image :</label>
+    <input type="text" name="images[2][caption]" required />
+
+    <label for="quantity">Quantité</label>
+    <input type="number" name="quantity" />
+
+    <label for="categorie">Categorie</label>
+    <select name="categorie" >
+        <%for (categorie of categorieName ) {%>
+            <option value="<%=categorie.id%>" <% if (categorie.id) { %>selected<% } %>><%=categorie.name_categorie%></option>
+        <%}%>
+    </select>
+    <section>
+
+    <div>
+      <input type="submit" value="Ajouter" class="btn" />
+    </div>
+  </form>
+</section>
+<script src="script/header.js"></script>
+<%- include('./includes/footer.ejs') %>

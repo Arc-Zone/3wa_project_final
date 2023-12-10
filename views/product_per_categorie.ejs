@@ -1,0 +1,18 @@
+<%- include('./includes/header.ejs') %>
+<span class="fil-ariane"> <a href="/shop">Categorie</a></span>
+<h1> Les Articles</h1>
+<section class="categorie">
+
+  <% for (data of categorieData ) {%>
+
+  <article class="search-article">
+    <h2><%=data.name%></h2>
+    <img src="<%= data.img_url%>" alt="<%=data.caption_img%>" />
+    <a href="/shop/product/<%= data.id%>" title="<%=data.name%>" class="btn"
+      >Voir</a
+    >
+  </article>
+  <%}%>
+</section>
+
+<%- include('./includes/footer.ejs') %>

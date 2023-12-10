@@ -1,0 +1,33 @@
+<%- include('./includes/header.ejs') %>
+
+<section  class="crud-section search-article">
+    <h2 id="update">Modifier un Produit</h2>
+    <span class="fil-ariane">
+        <a href="/admin">Commande /</a> 
+        <a href="#update">Modifier un produit /</a> 
+        <a href="/admin-slider">slider</a> 
+        <a href="/admin-categorie">Categorie</a>
+    </span>
+   
+    <section class="crud-update-add">
+    <h2>Edit Categorie</h2>
+
+        <% for (categorieData of updateCategorie ) {%>
+        <form action="/admin/edit-categorie/<%=categorieData.id%>" method="post"  >
+            <label for="categorieName">Nom de la Categorie</label>
+            <input type="text" class="form-control" id="categorieName" name="categorieName" value="<%=categorieData.name_categorie%>" required>
+
+            <label for="img">Image</label>
+            <input type="text" name="img" id="img" value="<%=categorieData.image_categorie%>">
+                <img src="<%=categorieData.image_categorie%>" alt="<%=categorieData.caption_categorie_img%>" width="20%">
+
+            <label for="description">Description de l'image</label>
+            <input type="text" class="form-control" id="description" name="description" value="<%=categorieData.caption_categorie_img%>" >
+
+            <input type="submit" name="" id="" value="Valider" class="btn">
+    </form>
+    <%}%>
+
+</section>
+
+    <%- include('./includes/footer.ejs') %>

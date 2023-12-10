@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0666f5c28b.js" crossorigin="anonymous"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AV1ZDuGki9SorSf4L4GksI15Cj2HL94NEN-RrUnak3YtSSGYfPinCDfNsqknj9coHuy1JQ66V7Abw4mB&currency=EUR"></script>
+
+    <title>The Crazy Poppies</title>
+</head>
+<body>
+    <header>
+        <h1>The Crazy Poppies</h1>
+        <nav class="nav_bar">
+        <li id="burger-menu"><i class="fas fa-bars" style="color: #f8fff9;" ></i></li>  
+        <div class="menu-burger" id="menu-burger">  
+        <li> <a href="/"><i class="fas fa-home"></i> Accueil</a> </li>
+        <li> <a href="/shop"><i class="fas fa-store"></i> Shop</a></li>  
+        <% if (!locals.session.connected) { %>
+        <li><a href="/login">Se Connecter</a></li>
+        <li><a href="/inscription">Inscription</a></li>
+        <% } %>
+        <li><input type="text" name="" id="search-bar" placeholder="Rechercher"></li>
+        <li><a href="/panier"> <sup id="sup-item-cart">  </sup> <i class="fas fa-cart-arrow-down"></i>  Panier</a></li>
+        <%if (locals.session.connected) {%>
+            <li><a href="/account"><i class="fas fa-user"></i> Profil</li>
+            <li><a href="/sing-out"><i class="fas fa-sign-out-alt"></i> Déconexion</a></li>
+            <%}%>
+    </div> 
+    </nav>
+    </header>
+    <main>

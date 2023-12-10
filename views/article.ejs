@@ -1,0 +1,68 @@
+<%- include('./includes/header.ejs') %>
+<span class="fil-ariane"> <a href="/shop">Categorie/</a><a href="/shop/<%=articles[0].categorie_id%>">Articles</a></span>
+<section class="section-article">
+  <%for (article of articles) {%>
+  <article class="flex-article">
+    <div class="container-slider">
+      <% for (let i = 0 ; i < articlesImg.length ; i++) {%>
+      <div class="slider-article">
+        <img
+          src="<%=articlesImg[i].img_url%>"
+          alt="<%=articlesImg[i].caption_img %>"
+          width="100%"
+          height="500px"
+        />
+      </div>
+      <%}%>
+      <div class="btn-slider">
+        <div>
+          <button
+            id="previous-slide"
+            class="previous-button"
+            title="image precedente"
+          >
+            <i class="fas fa-chevron-left" style="color: #f1fff8"></i>
+          </button>
+        </div>
+        <div>
+          <button id="next-slide" class="next-button" title="image suivante">
+            <i class="fas fa-chevron-right" style="color: #fcfeff"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="contain-data-article">
+      <h3><%= article.name %></h3>
+      <h4>Description</h4>
+      <p><%= article.description %></p>
+      <p>Prix : <%=article.price%>€</p>
+      <button id="add-to-cart" class="btn">Ajouter au panier</button>
+    </div>
+  </article>
+  <%}%>
+</section>
+
+<script>
+    document.getElementById('add-to-cart').addEventListener('click' , function () {
+      const addToCart = JSON.parse(localStorage.getItem('addCart')) || []
+      const cart  = {
+            id : <%- JSON.stringify(article.id)%>,
+            tittle : <%- JSON.stringify(article.name) %>,
+            price :  <%- JSON.stringify(article.price) %>,
+            img:   <%- JSON.stringify(articlesImg[0].img_url) %>,
+      }
+      const isInCart = addToCart.findIndex(item => item.tittle === cart.tittle)
+
+      if(isInCart !== -1){
+        addToCart[isInCart].quantity++
+      }else{
+        cart.quantity = 1
+        addToCart.push(cart)
+
+      }
+  localStorage.setItem('addCart' , JSON.stringify(addToCart))
+  location.reload()
+  })
+</script>
+<script src="/script/slider-article.js"></script>
+<%- include('./includes/footer.ejs') %>

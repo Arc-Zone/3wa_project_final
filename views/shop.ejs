@@ -1,0 +1,21 @@
+<%- include('./includes/header.ejs') %>
+<h1>Shop</h1>
+
+<section class="categorie">
+  <% for (categorie of categories ) {%>
+  <article class="search-article no-article">
+    <h2><%=categorie.name_categorie.toUpperCase()%></h2>
+    <img
+      src="<%= categorie.image_categorie%>"
+      alt="<%=categorie.caption_categorie_img%>"
+    />
+    <a
+      href="/shop/<%=categorie.id%>"
+      class="btn"
+      title="<%= categorie.name_categorie%>"
+      >Voir</a
+    >
+  </article>
+  <%}%>
+</section>
+<%- include('./includes/footer.ejs') %>

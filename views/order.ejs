@@ -1,0 +1,47 @@
+<%- include('./includes/header.ejs') %>
+<section>
+    <h1>Recapitulatif des informations</h1>
+    <div class="user-info">
+        <form action="" method="post" id="post-form-order" >
+            <div>
+                <label for="firstName">Prénom : </label>
+                <input type="text" name="firstName" value="<%=userAccount.first_name%>" required>
+            </div>
+            <div>
+                <label for="lastName">Nom : </label>
+                <input type="text"  name="lastName" value="<%=userAccount.last_name%>" required>
+            </div>
+            <div>
+                <label for="email">Email : </label>
+                <input type="email"  name="email" value="<%=userAccount.email%>" required>
+            </div>
+        <div>
+                <label for="phone">Telephone : </label>
+                <input type="text"  name="phone" value="0<%=userAccount.phone %> " required>
+        </div>
+        <div>
+            <label for="adresse">Adresse:</label>
+            <input type="text" name="adresse" value="<%=userAccount.adresse%>" required>
+        </div>
+        <div>
+                <label for="postale">Code postale : </label>
+                <input type="text" name="postale" value="<%=userAccount.code_postale%>" required>
+        </div>
+            <div>
+                <label for="city">Ville : </label>
+                <input type="text" name="city" value="<%=userAccount.city%>" required>
+            </div>
+            <a class="btn" id="check-data-modal">Valider</a>
+        </form>
+
+    </div>
+    <div class="modal-order-data" id="modal-order-data">
+        <h2>Les informations sont-elles correctes ? </h2>
+        <div>
+            <input  type="submit" class="modal-btn" value="oui" onclick="submitPostFormOrder ()">
+            <span class="modal-btn" id="close-modal">non </span>
+        </div>
+    </div>
+</section>
+<script src="script/order_account.js"></script>
+<%- include('./includes/footer.ejs') %>

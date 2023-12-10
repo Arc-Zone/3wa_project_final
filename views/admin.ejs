@@ -1,0 +1,82 @@
+<%- include('./includes/header.ejs') %>
+
+<h1> Interface d'Adminstration </h1>
+<span class="fil-ariane">
+    <a href="/admin-product">Produit /</a> 
+    <a href="/admin-slider">slider</a> 
+    <a href="/admin-categorie">Categorie</a>
+</span>
+
+<section class="crud-section">
+    <% for (order of orders) { %>
+        <article class="order search-article ">
+            <div class="top-my-order">
+                <h4>Commande numéro : #<%=order.id_commande%></h4>
+                <p>Date de la commande: <%=order.order_date.toLocaleDateString('fr-FR')%></p>
+            </div>
+            <div class="flex-search">
+                    <% const productNames = order.product_names.split(','); %>
+                    <% for (let i = 0; i < productNames.length; i++) { %>
+                    <p><%= productNames[i] %></p>
+                    <% } %>
+            </div>
+            <div class="flex-search">
+                <% const productQuantities = JSON.parse('[' + order.quantities + ']'); %>
+                <% for (let i = 0; i < productQuantities.length; i++) { %>
+                    <p>Qté x <%= productQuantities[i] %></p>
+                <% } %>
+            </div>
+            <div class="flex-search">
+                <% const productPrice = order.prices.split(','); %>
+                <% for (let i = 0; i < productPrice.length; i++) { %>
+                <p><%= productPrice[i] %> unt/€</p>
+                <% } %>
+            </div>
+            <div class="bottom-my-order">
+                <div>
+                    <p>Total : <%= order.total_amount %>€</p>
+            </div>
+                <div>
+                    <p>Status de la commande :</p>
+
+                        <form action="/admin/order-status" method="post"> 
+
+                        <input type="hidden" value="<%= order.id_commande %>" name="orderId">
+
+                        <select name="statusOrder">
+                        <option value="<%= order.status%>" data-index="<%= order.status%>"  class="option-value"><%= order.status%></option>
+                        <option value="en attente">En attente</option>
+                        <option value="En cours de traitement">En cours de traitement</option>
+                        <option value="En cours de livraison">En cours de livraison</option>
+                        <option value="Livrée">Livrée</option>
+                    </select> 
+
+                    <button class="btn">Valider</button>
+                </form>
+            </div>
+            <div>
+                <p> Adresse de livraison: <%=order.user_adresse %></p>
+            </div>
+            <div>
+                <p> Code postale : <%=order.user_code_postale%></p>
+            </div>
+            <div>
+                <p>Ville : <%=order. user_city%></p>
+            </div>
+            <div>
+                <p> Prénom : <%=order.user_first_name%> </p>
+                </div>
+                <div>
+                    <p>Nom : <%=order.user_last_name%></p>
+            </div>
+            <div>
+                <p> Phone : 0<%=order.user_phone%> </p>
+        </div>
+                
+            </div>
+    </article>                       
+        <%}%> 
+</section>
+ 
+<script src="script/admin-order.js"></script>
+        <%- include('./includes/footer.ejs') %>

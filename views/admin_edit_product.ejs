@@ -1,0 +1,59 @@
+<%- include('./includes/header.ejs') %> 
+ <span class="fil-ariane">
+    <a href="/admin">Commande /</a> 
+    <a href="/admin-slider">slider</a> 
+    <a href="/admin-categorie">Categorie</a>
+</span>
+<section class="crud-update-add">
+    <h2>Edit Product</h2>
+    <form action="/admin/update/<%= product.id %>" method="POST"  >
+
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" required>
+
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" value="<%= product.description %>" >
+
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" >
+
+        <% for (let i = 0; i < images.length; i++) { %>
+            <label for="img_1_<%= i %>">Image <%= i + 1 %></label>
+            <input type="text" value="<%= images[i].img_url %>" name="img_1_<%= i %>">
+            
+            <img src="<%= images[i].img_url %>" width="10%">
+        
+            <p>Supprimer l'image  <a href="/admin/delete-img-product/<%=images[i].id%>">x</a></p>
+
+            <label for="img_1_<%= i %>">Description Image <%= i + 1 %></label>
+            <input type="text" name="" id="" value="<%= images[i].caption_img %>">
+        <% } %>
+        <label for="categorie">Categorie</label>
+        <select name="categorie" >
+            <%for (categorie of categories ) {%>
+
+                <option value="<%=categorie.id%>" <% if (product.categorie_id === categorie.id) { %>selected<% } %>><%=categorie.name_categorie%></option>
+            <%}%>
+        </select>
+        <section>
+            <h4>Ajouter plus d'image au produit existant</h4>
+    
+            <label for="add_update_img_0">URL de l'image :</label>
+            <input type="text" name="add_images[0][img_url]">
+            <label for="add_update_caption_0">Légende de l'image :</label>
+            <input type="text" name="add_images[0][caption]">
+    
+            <label for="add_update_img_1">URL de l'image :</label>
+            <input type="text" name="add_images[1][img_url]">
+            <label for="add_update_caption_1">Légende de l'image :</label>
+            <input type="text" name="add_images[1][caption]">
+    
+            <label for="add_update_img_2">URL de l'image :</label>
+            <input type="text" name="add_images[2][img_url]">
+            <label for="add_update_caption_2">Légende de l'image :</label>
+            <input type="text" name="add_images[2][caption]">
+            <button type="submit" class="btn">Update</button>
+        </section>
+        </section>
+    </form>
+</section>

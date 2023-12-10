@@ -1,0 +1,10 @@
+<section class="slider-img-home">
+  <h2>Mes Dernieres Creation</h2>
+  <%for (let i = 0 ; i < sliderImg.length; i++) { %>
+  <div class="slide effect">
+    <img src="<%= sliderImg[i].image_url%>" alt="<%= sliderImg[i].caption %>" />
+  </div>
+  <%}%>
+</section>
+
+<script src="script/slider-home.js"></script>

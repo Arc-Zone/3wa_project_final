@@ -1,0 +1,42 @@
+<%- include('./includes/header.ejs') %>
+<section  class="crud-section" >
+    <h2 id="update">Photo du Slider</h2>
+    <span class="fil-ariane"> 
+        <a href="/admin">Commande /</a>
+        <a href="/admin-product">Produit</a>
+        <a href="/admin-slider">/ slider </a> 
+        <a href="/admin-categorie">Categorie</a>
+        </span>
+
+    <article class="header-product-list">
+                <p>Image</p>
+                <p>Description</p>
+                <p>Mettre a jour</p>
+                <p>Supprimer</p>
+    </article>
+            <% for  (  imageSlider of imageSliders)  { %>
+                <article class="product-list ">
+                    <div>  <img src="<%= imageSlider.image_url%>" alt="%= imageSlider.caption%> " width="50%"></div>
+                    <div> <%= imageSlider.caption %></div>
+                    <div><a href="/admin/slider/<%= imageSlider.id %>">Mettre à Jour</a> </div>
+                    <div><a href="/admin-delete-slider/<%= imageSlider.id %>"> x </a></div>
+                </article>
+            <%}%> 
+    </article>
+    </section> 
+
+    <section class="crud-update-add">
+        <h2 id="add">AJouter un une image au slider </h2>
+        <form method="POST"  action="admin-slider">
+                <label for="url">lien :</label>
+                    <input type="text" name="url" required>
+                <label for="caption">Description:</label>
+                    <textarea name="caption" required></textarea>
+                    <input  type="submit" value="Ajouter" class="btn">
+            </div>
+        </form>
+            
+        </section>
+
+
+    <%- include('./includes/footer.ejs') %>
